@@ -48,6 +48,12 @@ func New(data float64) *Value { return &Value{Data: data} }
 func (v *Value) Add(other *Value) *Value {
 	out := &Value{Data: v.Data + other.Data, prev: []*Value{v, other}}
 	out.backward = func() {
+		// Chain rule, with L the node Backward was called on:
+		//   dL/dv = dL/dout · dout/dv = out.Grad · 1
+		// and the same for other. Addition passes the gradient through
+		// unchanged: nudging either operand by ε nudges the sum by ε.
+		// += because v and other may also reach L through other nodes,
+		// and the contributions of all paths are summed.
 		v.Grad += out.Grad
 		other.Grad += out.Grad
 	}
@@ -64,6 +70,9 @@ func (v *Value) Add(other *Value) *Value {
 func (v *Value) Mul(other *Value) *Value {
 	out := &Value{Data: v.Data * other.Data, prev: []*Value{v, other}}
 	out.backward = func() {
+		// Chain rule: dL/dv = dL/dout · dout/dv, and dout/dv = other
+		// because other is a constant factor when only v changes.
+		// Nudging v by ε nudges v·other by other·ε. Symmetrically for other.
 		v.Grad += other.Data * out.Grad
 		other.Grad += v.Data * out.Grad
 	}
@@ -75,11 +84,14 @@ func (v *Value) Mul(other *Value) *Value {
 // Local derivative (power rule): d(xⁿ)/dx = n·xⁿ⁻¹. The exponent is a plain
 // float64, not a *Value: it is a fixed constant, so no gradient flows into it.
 //
-// The derivative of x⁰ = 1 is zero everywhere. It is handled explicitly
-// because the general formula would compute 0·0⁻¹ = 0·∞ = NaN at x = 0.
+// The derivative of x⁰ is taken as 0 everywhere, including at x = 0.
 func (v *Value) Pow(exponent float64) *Value {
 	out := &Value{Data: math.Pow(v.Data, exponent), prev: []*Value{v}}
 	out.backward = func() {
+		// Chain rule with the power rule:
+		//   dL/dv = dL/dout · dout/dv = out.Grad · n·vⁿ⁻¹
+		// For n = 0 the output is the constant 1, whose derivative is 0,
+		// so nothing is added (and 0·0⁻¹ = NaN at v = 0 is avoided).
 		if exponent != 0 {
 			v.Grad += exponent * math.Pow(v.Data, exponent-1) * out.Grad
 		}
@@ -95,6 +107,12 @@ func (v *Value) Pow(exponent float64) *Value {
 func (v *Value) ReLU() *Value {
 	out := &Value{Data: math.Max(0, v.Data), prev: []*Value{v}}
 	out.backward = func() {
+		// Chain rule: dL/dv = out.Grad · dout/dv.
+		// For v > 0, ReLU is the identity, so dout/dv = 1 and the gradient
+		// passes through. For v ≤ 0 the output is the constant 0, so
+		// dout/dv = 0 and nothing is added: a small change of a negative
+		// input does not change the output at all.
+		// out.Data > 0 holds exactly when v.Data > 0.
 		if out.Data > 0 {
 			v.Grad += out.Grad
 		}
@@ -154,6 +172,9 @@ func (v *Value) Backward() {
 	// the leaves.
 	v.Grad = 1
 	for i := len(order) - 1; i >= 0; i-- {
+		// Reverse topological order: every node that uses order[i] has
+		// already run, so order[i].Grad is complete when it is passed on.
+		// Leaves have no backward: there is nothing below them.
 		if order[i].backward != nil {
 			order[i].backward()
 		}
