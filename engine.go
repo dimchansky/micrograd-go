@@ -153,8 +153,8 @@ func (v *Value) Div(other *Value) *Value { return v.Mul(other.Pow(-1)) }
 func (v *Value) Backward() {
 	// Depth-first search: a node is appended only after all of its operands,
 	// and seen makes sure a node shared by several paths is listed once.
-	var order []*Value
-	seen := make(map[*Value]bool)
+	var order []*Value            // every node v depends on, each once, operands before their results; v is last
+	seen := make(map[*Value]bool) // nodes already visited, so a shared node is not listed twice
 	var visit func(*Value)
 	visit = func(n *Value) {
 		if seen[n] {
@@ -166,10 +166,11 @@ func (v *Value) Backward() {
 		}
 		order = append(order, n)
 	}
-	visit(v)
+	visit(v) // recurses down to the leaves, appending each node on the way back up: y = x·x + x gives [x, x·x, y]
 
-	// The chain starts from dv/dv = 1 and then flows from the result towards
-	// the leaves.
+	// The chain starts from dv/dv = 1 at the end of order. Walking order
+	// from the end goes from v back towards the leaves, every result before
+	// its operands.
 	v.Grad = 1
 	for i := len(order) - 1; i >= 0; i-- {
 		// Reverse topological order: every node that uses order[i] has
