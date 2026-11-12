@@ -50,10 +50,11 @@ go get github.com/dimchansky/micrograd-go
 ```go
 import mg "github.com/dimchansky/micrograd-go"
 
-x := mg.New(3)
-y := x.Mul(x).Add(x) // y = x² + x
-y.Backward()
-fmt.Println(y.Data, x.Grad) // 12 7, because dy/dx = 2x + 1 = 7
+x := mg.New(3)       // a leaf node holding the number 3; its gradient starts at 0
+y := x.Mul(x).Add(x) // y = x² + x; computes y.Data = 9 + 3 = 12 and records the graph
+y.Backward()         // walks the graph back from y and stores dy/d(node) in each node's Grad
+
+fmt.Println(y.Data, x.Grad) // 12 7: the value of y, and dy/dx = 2x + 1 = 7 at x = 3
 ```
 
 ## What to read, in which order

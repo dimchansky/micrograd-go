@@ -332,7 +332,6 @@ func render(o options, model *mg.MLP, data []sample, history []metrics) error {
 
 	p.text(fmt.Sprintf("ReLU hidden layers · linear output · L2 %.4g · seed %d", o.l2, o.seed),
 		66, 962, 16, false, "#607186", 0)
-	p.text("Based on karpathy/micrograd", 1374, 962, 16, false, "#607186", 1)
 	return savePNG(o.out, dc.Image())
 }
 
