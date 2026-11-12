@@ -9,7 +9,7 @@ import (
 	"os"
 	"path/filepath"
 
-	mg "example.com/micrograd"
+	mg "github.com/dimchansky/micrograd-go"
 	"github.com/fogleman/gg"
 	"golang.org/x/image/font"
 	"golang.org/x/image/font/gofont/gobold"

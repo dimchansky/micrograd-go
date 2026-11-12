@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"math/rand/v2"
 
-	mg "example.com/micrograd"
+	mg "github.com/dimchansky/micrograd-go"
 )
 
 func main() {

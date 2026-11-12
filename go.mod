@@ -1,4 +1,4 @@
-module example.com/micrograd
+module github.com/dimchansky/micrograd-go
 
 go 1.22
 

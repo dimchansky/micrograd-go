@@ -3,7 +3,7 @@ package micrograd_test
 import (
 	"testing"
 
-	mg "example.com/micrograd"
+	mg "github.com/dimchansky/micrograd-go"
 )
 
 func BenchmarkScalar(b *testing.B) {
@@ -14,7 +14,11 @@ func BenchmarkScalar(b *testing.B) {
 	}
 }
 
-// A complete forward/backward/SGD step for 100 samples.
+// BenchmarkMLPStep times one forward/backward/update step of the 2→16→16→1
+// network on 100 samples. Every multiplication and addition is a separate
+// heap-allocated node with its own closure, which is what makes scalar
+// autograd easy to read and slow to run; tensor libraries batch the same
+// arithmetic into a few large array operations.
 func BenchmarkMLPStep(b *testing.B) {
 	m := mg.NewMLP(2, []int{16, 16, 1}, newRNG())
 	params := m.Parameters()

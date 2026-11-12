@@ -1,4 +1,6 @@
 .idea/
 .DS_Store
 *.test
-/moons*.png
+# Pictures from ad-hoc runs; cmd/moons/moons.png is the tracked README image.
+/*.png
+/cmd/moons/moons-*.png

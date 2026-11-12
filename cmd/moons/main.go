@@ -1,6 +1,13 @@
-// Command moons reproduces the nonlinear classification demo from micrograd.
-// Run: go run ./cmd/moons -out moons.png
+// Command moons trains a small MLP to separate two interleaving half-circles
+// ("two moons"), a data set that no straight line can split, and draws the
+// learned decision regions together with the loss curve.
+//
+// Regenerate the picture used in the README, next to this file:
+//
+//	go generate ./cmd/moons
 package main
+
+//go:generate go run . -out moons.png
 
 import (
 	"flag"
@@ -10,7 +17,7 @@ import (
 	"math/rand/v2"
 	"path/filepath"
 
-	mg "example.com/micrograd"
+	mg "github.com/dimchansky/micrograd-go"
 )
 
 type options struct {
@@ -90,13 +97,16 @@ type sample struct {
 	x, y, label float64
 }
 
-// makeMoons uses the same semicircle geometry as sklearn.make_moons.
-// Random streams differ from NumPy/Python, so equal seeds do not mean equal data.
+// makeMoons returns n points on two interleaving half-circles: the upper one
+// centred at (0, 0) with label -1, and the lower one centred at (1, 0.5) with
+// label +1. Gaussian noise blurs the points and the result is shuffled. This is
+// the same geometry as scikit-learn's make_moons, but the random numbers come
+// from Go, so the points differ from Python's for the same seed.
 func makeMoons(n int, noise float64, rng *rand.Rand) []sample {
 	data := make([]sample, 0, n)
 	for class, count := range []int{n / 2, n - n/2} {
 		for i := 0; i < count; i++ {
-			angle := math.Pi * float64(i) / float64(count-1)
+			angle := math.Pi * float64(i) / float64(max(count-1, 1))
 			x, y, label := math.Cos(angle), math.Sin(angle), -1.0
 			if class == 1 {
 				x, y, label = 1-x, 0.5-y, 1
@@ -120,13 +130,22 @@ func forward(model *mg.MLP, x, y float64) *mg.Value {
 	return model.Forward([]*mg.Value{mg.New(x), mg.New(y)})[0]
 }
 
-// hinge is max(0, 1-label*score). The labels are -1 and +1.
+// hinge is the loss max(0, 1 - label·score) for labels -1 and +1.
+//
+// label·score is positive when the sign of the score is right. The loss is
+// zero once that margin reaches 1, so confidently correct points stop pushing
+// the weights, and it grows linearly the more wrong the score is. Its gradient
+// with respect to the score is -label inside the margin and 0 outside of it.
 func hinge(score *mg.Value, label float64) *mg.Value {
 	return mg.New(1).Add(score.Mul(mg.New(-label))).ReLU()
 }
 
-// objective matches demo.ipynb: mean hinge loss + alpha*sum(parameter^2).
-// Biases are regularized too, as in the original. Scores are not probabilities.
+// objective returns mean hinge loss + alpha·Σ p² over all parameters p.
+//
+// The second term is L2 regularization. Its gradient 2·alpha·p pulls every
+// parameter slightly towards zero, which keeps the weights small and the
+// decision boundary smooth. Biases are included for simplicity. The score
+// is only an unbounded margin; it is not a probability.
 func objective(model *mg.MLP, data []sample, alpha float64) (*mg.Value, metrics) {
 	loss := mg.New(0)
 	correct := 0
@@ -147,8 +166,18 @@ func objective(model *mg.MLP, data []sample, alpha float64) (*mg.Value, metrics)
 	return loss.Add(reg), m
 }
 
-// Each history entry describes the model after that many updates.
-// Each dataset pass makes one SGD update, optionally accumulating microbatches.
+// train runs steps updates of gradient descent and returns steps+1 history
+// entries: entry k describes the model after k updates.
+//
+// Every step makes exactly one update from the gradient of the whole data set.
+// With batchSize > 0 that gradient is computed in pieces: each microbatch gets
+// its own fresh graph, its mean loss is scaled by its share of the data
+// (n_batch/N), and Backward adds the result into the shared weight leaves.
+// The sum of the scaled means equals the full-data mean, so the update is the
+// same as with one big graph, but no single graph has to hold all the data.
+//
+// The learning rate decays linearly from 1.0 to 0.1, large steps first to
+// make progress, small steps later to settle.
 func train(model *mg.MLP, data []sample, steps, batchSize int, alpha float64, report func(int, metrics)) ([]metrics, error) {
 	if len(data) == 0 || steps < 0 || batchSize < 0 {
 		return nil, fmt.Errorf("training requires data and nonnegative steps/batch size")

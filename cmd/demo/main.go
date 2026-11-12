@@ -4,7 +4,7 @@ package main
 import (
 	"fmt"
 
-	mg "example.com/micrograd"
+	mg "github.com/dimchansky/micrograd-go"
 )
 
 func main() {

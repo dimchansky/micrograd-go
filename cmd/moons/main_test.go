@@ -5,7 +5,7 @@ import (
 	"math/rand/v2"
 	"testing"
 
-	mg "example.com/micrograd"
+	mg "github.com/dimchansky/micrograd-go"
 )
 
 func closeTo(t *testing.T, got, want float64) {

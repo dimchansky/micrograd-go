@@ -5,7 +5,7 @@ import (
 	"math"
 	"testing"
 
-	mg "example.com/micrograd"
+	mg "github.com/dimchansky/micrograd-go"
 )
 
 func near(t *testing.T, got, want, tolerance float64) {
@@ -65,7 +65,9 @@ func TestPowers(t *testing.T) {
 }
 
 func TestGradientsAgainstFiniteDifferences(t *testing.T) {
-	// Independent reference: ordinary arithmetic, no autograd operations.
+	// Independent reference: the same function in plain float64 arithmetic.
+	// A central difference (f(x+h)-f(x-h))/2h approximates the derivative
+	// with an error of order h², which is far below the tolerance.
 	f := func(x, y float64) float64 {
 		return math.Pow(x*y+x, 3)/(y*y+1) + math.Max(0, x-0.7)
 	}
@@ -84,9 +86,11 @@ func TestGradientsAgainstFiniteDifferences(t *testing.T) {
 	}
 }
 
-// These are the same graphs as Karpathy's test/test_engine.py, with
-// independent analytic references instead of a Python/PyTorch dependency.
-func TestUpstreamSanityExample(t *testing.T) {
+// The next two tests build deliberately tangled graphs: shared nodes,
+// reassigned variables and every operation. The expected values come from
+// simplifying each expression by hand into a polynomial, so the reference
+// does not depend on the autograd code under test.
+func TestTangledGraph(t *testing.T) {
 	x := mg.New(-4)
 	z := mg.New(2).Mul(x).Add(mg.New(2)).Add(x)
 	q := z.ReLU().Add(z.Mul(x))
@@ -99,7 +103,7 @@ func TestUpstreamSanityExample(t *testing.T) {
 	near(t, x.Grad, 9*v*v+28*v+14, 0)
 }
 
-func TestUpstreamMoreOpsExample(t *testing.T) {
+func TestTangledGraphAllOperations(t *testing.T) {
 	a, b := mg.New(-4), mg.New(2)
 	c := a.Add(b)
 	d := a.Mul(b).Add(b.Pow(3))
@@ -121,6 +125,9 @@ func TestUpstreamMoreOpsExample(t *testing.T) {
 	near(t, b.Grad, dgdf*2*ev*(3-12*av-36*bv*bv), 1e-12)
 }
 
+// A weight leaf survives across steps while every forward pass builds new
+// intermediate nodes. Gradients from several fresh graphs add up in the leaf
+// until it is reset, and one SGD step behaves as expected.
 func TestAccumulationWithFreshGraphs(t *testing.T) {
 	x := mg.New(3)
 	for i := 0; i < 2; i++ {

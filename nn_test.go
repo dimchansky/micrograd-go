@@ -4,7 +4,7 @@ import (
 	"math/rand/v2"
 	"testing"
 
-	mg "example.com/micrograd"
+	mg "github.com/dimchansky/micrograd-go"
 )
 
 func newRNG() *rand.Rand { return rand.New(rand.NewPCG(1, 2)) }
