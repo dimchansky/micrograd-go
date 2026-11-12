@@ -123,8 +123,8 @@ calculus textbook:
 | --- | --- | --- |
 | `a.Add(b)` | $o = a + b$ | $\dfrac{\partial o}{\partial a} = 1,\quad \dfrac{\partial o}{\partial b} = 1$ |
 | `a.Mul(b)` | $o = a \cdot b$ | $\dfrac{\partial o}{\partial a} = b,\quad \dfrac{\partial o}{\partial b} = a$ |
-| `a.Pow(n)` | $o = a^n$ | $\dfrac{\partial o}{\partial a} = n \, a^{n-1}$ |
-| `a.ReLU()` | $o = \max(0, a)$ | $\dfrac{\partial o}{\partial a} = \begin{cases} 1 & a > 0 \\ 0 & a \le 0 \end{cases}$ |
+| `a.Pow(n)` | $o = a^n$ | $\dfrac{\partial o}{\partial a} = n \cdot a^{n-1}$ |
+| `a.ReLU()` | $o = \max(0, a)$ | $\dfrac{\partial o}{\partial a} = 1$ if $a > 0$, otherwise $0$ |
 
 `Neg`, `Sub` and `Div` need no rules of their own. They are built from the
 four operations above, and the chain rule combines the existing rules:
@@ -318,7 +318,7 @@ It is built from `Sub`, `Pow(2)`, `Add` and `Div`, so `Backward` derives the
 gradient above by itself.
 
 **Hinge loss with L2 regularization** ([cmd/moons](cmd/moons/main.go)), for
-labels $y_i \in \{-1, +1\}$ and network scores $s_i$:
+labels $y_i \in \lbrace -1, +1 \rbrace$ and network scores $s_i$:
 
 ```math
 L = \underbrace{\frac{1}{N}\sum_{i=1}^{N} \max(0,\ 1 - y_i s_i)}_{\text{hinge}} \;+\; \underbrace{\alpha \sum_{p} p^2}_{\text{L2}}.
