@@ -32,7 +32,7 @@ dependencies in the library itself.
 
 ## Quick start
 
-Requires Go 1.22 or newer.
+Requires Go 1.27 or newer.
 
 ```sh
 go test ./...        # check the engine and the network
