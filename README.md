@@ -388,11 +388,8 @@ The tests never compare autograd with itself:
   Two deliberately tangled graphs that use every operation are simplified by
   hand into polynomials.
 - **Finite differences.** For a function $f$ written in plain `float64`
-  arithmetic, the derivative is approximated by
-  ```math
-  f'(x) \approx \frac{f(x+h) - f(x-h)}{2h}
-  ```
-  and compared with the autograd result. The same check covers every weight
+  arithmetic, the derivative is approximated by the central difference
+  $f'(x) \approx \dfrac{f(x+h) - f(x-h)}{2h}$ and compared with the autograd result. The same check covers every weight
   and input of an MLP.
 - **Behaviour.** Networks learn XOR and the two moons; mini-batch training
   gives the same weights as full-batch training; shape mistakes panic.
