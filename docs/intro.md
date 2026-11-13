@@ -342,9 +342,20 @@ in orange. Each edge going into an operation shows, in purple, that
 operation's local derivative: how its result reacts to this one input. The
 edge from $a$ into $+$ carries $\dfrac{\partial d}{\partial a} = 1$, and the
 edge from $d$ into $\times$ carries $\dfrac{\partial L}{\partial d} = c = -2$,
-the *other* factor, as found in section 6. To get a node's gradient, take the
-gradient of the result its edge leads to and multiply by the edge's number.
-For $a$ that is $-2 \cdot 1 = -2$:
+the *other* factor, as found in section 6.
+
+A node's gradient is always two numbers multiplied: the orange gradient of
+the node its edge leads to, times the purple number on that edge. For $a$,
+the edge leads through $+$ to $d$. The gradient of $d$ is $-2$, and the edge
+carries $1$:
+
+```math
+\dfrac{\partial L}{\partial a} = \dfrac{\partial L}{\partial d} \cdot \dfrac{\partial d}{\partial a} = -2 \cdot 1 = -2.
+```
+
+The labels in the picture use the same colours, so each number can be traced
+back to where it came from. The nodes next to $L$ follow the same pattern:
+for $d$ it is $1 \cdot (-2)$, where the $1$ is the gradient of $L$ itself.
 
 ![The same graph after the backward pass: every node shows ∂L/∂node, every edge the local derivative](images/graph-backward.svg)
 

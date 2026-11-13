@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="760" height="375" viewBox="0 0 760 375" font-family="-apple-system, Segoe UI, Helvetica, Arial, sans-serif" font-size="15" fill="#0f172a">
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="385" viewBox="0 0 760 385" font-family="-apple-system, Segoe UI, Helvetica, Arial, sans-serif" font-size="15" fill="#0f172a">
   <!-- L = (a + b) · c: forward values. Inputs a = 2, b = 1, c = −2. -->
-  <rect width="760" height="375" rx="12" fill="#ffffff"/>
+  <rect width="760" height="385" rx="12" fill="#ffffff"/>
   <defs>
     <marker id="fwd" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#94a3b8"/></marker>
     <marker id="fwdbig" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#64748b"/></marker>
@@ -19,6 +19,6 @@
   <rect x="570" y="171" width="140" height="78" rx="8" fill="#f8fafc" stroke="#0f172a" stroke-width="1.5"/><text x="582" y="195" font-weight="600">L = d · c</text><text x="582" y="217">value −6</text>
   <circle cx="235" cy="150" r="20" fill="#ffffff" stroke="#0f172a" stroke-width="1.5"/><text x="235" y="156" text-anchor="middle" font-size="18">+</text>
   <circle cx="505" cy="210" r="20" fill="#ffffff" stroke="#0f172a" stroke-width="1.5"/><text x="505" y="216" text-anchor="middle" font-size="18">×</text>
-  <line x1="60" y1="355" x2="700" y2="355" stroke="#64748b" stroke-width="2" marker-end="url(#fwdbig)"/>
-  <text x="380" y="340" text-anchor="middle" fill="#64748b">forward: compute values from the inputs to L</text>
+  <line x1="60" y1="362" x2="700" y2="362" stroke="#64748b" stroke-width="2" marker-end="url(#fwdbig)"/>
+  <text x="380" y="348" text-anchor="middle" fill="#64748b">forward: compute values from the inputs to L</text>
 </svg>
