@@ -160,14 +160,28 @@ x_{\text{new}} = x - \eta \cdot f'(x) \quad\text{decreases } f.
 (Where the slope is exactly 0, here at the bottom of the parabola at $x = 2$,
 the step is zero and $x$ stays put.)
 
-Check with $\eta = 0.1$, predicted change against the real one:
+Let us check this on the same function as in the pictures,
+$f(x) = x^2 - 4x + 5$ with slope $f'(x) = 2x - 4$, and $\eta = 0.1$. Each
+row does three things:
 
-| Start | Slope | Step $h$ | Predicted change, slope × $h$ | New $x$ | New $f$ | Actual change |
+1. compute the step $h$ from the slope;
+2. **predict** the change with the rule: slope × $h$;
+3. move to $x + h$, compute the **actual** value $f(x+h)$ from the formula
+   of $f$, and subtract $f(x)$.
+
+For example, in the first row $x + h = 1 - 0.2 = 0.8$, so
+$f(0.8) = 0.8^2 - 4 \cdot 0.8 + 5 = 0.64 - 3.2 + 5 = 2.44$, and the actual
+change is $2.44 - 2 = 0.44$.
+
+| Point | Slope $f'(x)$ | Step $h$ | Predicted change $f'(x) \cdot h$ | $x + h$ | $f(x + h)$ | Actual change $f(x + h) - f(x)$ |
 | --- | --- | --- | --- | --- | --- | --- |
-| $x = 1$, $f = 2$ | −2 | $+0.1 \cdot (-2) = -0.2$ | +0.4 | 0.8 | 2.44 | +0.44 ↑ |
-| $x = 1$, $f = 2$ | −2 | $-0.1 \cdot (-2) = +0.2$ | −0.4 | 1.2 | 1.64 | −0.36 ↓ |
-| $x = 3.5$, $f = 3.25$ | +3 | $+0.1 \cdot 3 = +0.3$ | +0.9 | 3.8 | 4.24 | +0.99 ↑ |
-| $x = 3.5$, $f = 3.25$ | +3 | $-0.1 \cdot 3 = -0.3$ | −0.9 | 3.2 | 2.44 | −0.81 ↓ |
+| $x = 1$, $f(1) = 2$ | −2 | $+0.1 \cdot (-2) = -0.2$ | +0.4 | 0.8 | 2.44 | +0.44 ↑ |
+| $x = 1$, $f(1) = 2$ | −2 | $-0.1 \cdot (-2) = +0.2$ | −0.4 | 1.2 | 1.64 | −0.36 ↓ |
+| $x = 3.5$, $f(3.5) = 3.25$ | +3 | $+0.1 \cdot 3 = +0.3$ | +0.9 | 3.8 | 4.24 | +0.99 ↑ |
+| $x = 3.5$, $f(3.5) = 3.25$ | +3 | $-0.1 \cdot 3 = -0.3$ | −0.9 | 3.2 | 2.44 | −0.81 ↓ |
+
+The first and third rows step *with* the slope ($h = +\eta \cdot f'(x)$),
+the second and fourth *against* it ($h = -\eta \cdot f'(x)$).
 
 The prediction is not exact, because the tangent only approximates the
 curve; the smaller the step, the closer they agree. But the direction is
