@@ -46,6 +46,9 @@ go run ./cmd/mlp     # learn XOR with a 2 → 8 → 1 network
 go run ./cmd/moons   # learn the two-moons boundary and draw moons.png
 ```
 
+The figures in `docs/images` are drawn by the Python 3 scripts next to them
+(no packages needed), for example `python3 docs/images/graph.py`.
+
 Use it as a library:
 
 ```sh
