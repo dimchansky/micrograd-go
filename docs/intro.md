@@ -311,13 +311,18 @@ In the top line, $a$ cancels $a$ and $b$ cancels $b$, so only $h$ is left.
 Nudging $b$ instead, with $a$ fixed, works the same way: $\dfrac{\partial d}{\partial b} = 1$.
 
 But this tells us how $d$ reacts to $a$, and the question is how **$L$**
-reacts to $a$. The two pieces we have fit together like this:
+reacts to $a$. To connect the two, follow a small nudge of $a$ through the
+graph, one operation at a time, each time using the rule from section 2:
+*change ≈ slope × step*.
 
-- nudge $a$ by a small $h$, and $d$ moves by $\dfrac{\partial d}{\partial a} \cdot h = 1 \cdot h$;
-- $d$ moving by any small amount $k$ makes $L$ move by $\dfrac{\partial L}{\partial d} \cdot k = -2 \cdot k$;
-- so $L$ moves by $-2 \cdot (1 \cdot h)$.
+1. Nudge $a$ by a small $h$. The slope of $d$ with respect to $a$ is
+   $\dfrac{\partial d}{\partial a} = 1$, so $d$ changes by $1 \cdot h$.
+2. This change of $d$ is the step for the next operation. The slope of $L$
+   with respect to $d$ is $\dfrac{\partial L}{\partial d} = -2$, so $L$
+   changes by $-2 \cdot (1 \cdot h)$.
 
-The rates multiply. This is the **chain rule**:
+So $L$ changes by $-2 \cdot 1 = -2$ times the nudge of $a$: the slopes
+multiply. This is the **chain rule**:
 
 ```math
 \dfrac{\partial L}{\partial a} = \dfrac{\partial L}{\partial d} \cdot \dfrac{\partial d}{\partial a} = -2 \cdot 1 = -2,
