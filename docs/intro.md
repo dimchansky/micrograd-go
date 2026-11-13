@@ -208,14 +208,17 @@ L = d \cdot c.
 
 We can still ask how $L$ reacts to a small change of **one** input while the
 others are held fixed. That is a **partial derivative**, written with a
-curly $\partial$ instead of the straight $d$ in $\dfrac{df}{dx}$. It is computed exactly as before, by nudging
-only that one input:
+curly $\partial$ instead of the straight $d$ in $\dfrac{df}{dx}$.
+
+It is computed exactly as in section 1: nudge only $d$ by $h$, keep $c$
+fixed, and divide the change in $L$ by $h$. Before the nudge
+$L = d \cdot c$; after it, $L = (d + h) \cdot c = d \cdot c + h \cdot c$. So
 
 ```math
-\dfrac{\partial L}{\partial d} = \lim_{h \to 0} \dfrac{(d+h) \cdot c - d \cdot c}{h} = \lim_{h \to 0} \dfrac{h \cdot c}{h} = c,
-\qquad
-\dfrac{\partial L}{\partial c} = d.
+\dfrac{\partial L}{\partial d} = \lim_{h \to 0} \dfrac{\big[d \cdot c + h \cdot c\big] - \big[d \cdot c\big]}{h} = \lim_{h \to 0} \dfrac{h \cdot c}{h} = c.
 ```
+
+In the same way, nudging $c$ with $d$ fixed gives $\dfrac{\partial L}{\partial c} = d$.
 
 Each partial derivative is the slope of $L$ along one input's direction. The
 list of all of them, one per input, is the **gradient** of $L$.
@@ -295,14 +298,17 @@ already the answers we want.
 
 ## 7. One step further back: the chain rule
 
-Next comes $d = a + b$. On its own, this operation is just as easy. Its
-local derivatives come from the same limit:
+Next comes $d = a + b$. On its own, this operation is just as easy. We use
+the same recipe: nudge one input, here $a$, by $h$, keep $b$ fixed, and
+divide the change in $d$ by $h$. Before the nudge $d = a + b$; after it,
+$d = (a + h) + b$. So
 
 ```math
-\dfrac{\partial d}{\partial a} = \lim_{h \to 0} \dfrac{(a+h) + b - (a + b)}{h} = \lim_{h \to 0} \dfrac{h}{h} = 1,
-\qquad
-\dfrac{\partial d}{\partial b} = 1.
+\dfrac{\partial d}{\partial a} = \lim_{h \to 0} \dfrac{\big[(a+h) + b\big] - \big[a + b\big]}{h} = \lim_{h \to 0} \dfrac{h}{h} = 1.
 ```
+
+In the top line, $a$ cancels $a$ and $b$ cancels $b$, so only $h$ is left.
+Nudging $b$ instead, with $a$ fixed, works the same way: $\dfrac{\partial d}{\partial b} = 1$.
 
 But this tells us how $d$ reacts to $a$, and the question is how **$L$**
 reacts to $a$. The two pieces we have fit together like this:
