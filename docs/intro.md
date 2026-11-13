@@ -68,8 +68,41 @@ $f(3.5) = 3.25$ and $f'(3.5) = 2 \cdot 3.5 - 4 = 3$.
   step to the left makes it go **down**.
 
 In both cases, moving $x$ in the direction of the sign of $f'(x)$ increases
-$f$, and moving against it decreases $f$. For a small positive step size
-$\eta$ (the Greek letter *eta*), both cases follow one rule:
+$f$, and moving against it decreases $f$.
+
+Instead of looking at the sign and choosing a direction by hand, we can build
+the step out of the slope itself:
+
+```math
+h = \eta \cdot f'(x),
+```
+
+where $\eta$ (the Greek letter *eta*) is a small positive number such as
+$0.1$, the **step size**. Because $\eta$ is positive, $h$ always has the same
+sign as the slope: at $x = 1$ the slope $-2$ gives $h = 0.1 \cdot (-2) = -0.2$,
+a step to the left; at $x = 3.5$ the slope $+3$ gives $h = +0.3$, a step to
+the right. These are exactly the directions in which $f$ grows.
+
+How much does $f$ change after such a step? Take the approximation from the
+start of this section, *change ≈ slope × step*, and put our step in place
+of $h$:
+
+```math
+\begin{aligned}
+f(x+h) - f(x) &\approx f'(x) \cdot h && \text{change} \approx \text{slope} \times \text{step} \\
+&= f'(x) \cdot \eta \cdot f'(x) && \text{substitute } h = \eta \cdot f'(x) \\
+&= \eta \cdot \left(f'(x)\right)^2 && \text{the slope appears twice}
+\end{aligned}
+```
+
+The slope is multiplied by itself, and a number squared is never negative:
+$(-2) \cdot (-2) = 4$ and $3 \cdot 3 = 9$. In words: when the slope is negative,
+the step is negative too, and negative × negative is positive. With $\eta > 0$
+the change is therefore positive whichever way the tangent tilts, so $f$
+increases.
+
+Stepping the other way, $h = -\eta \cdot f'(x)$, gives a change of about
+$-\eta \cdot (f'(x))^2$, which is negative, so $f$ decreases. Both together:
 
 ```math
 x_{\text{new}} = x + \eta \cdot f'(x) \quad\text{increases } f,
@@ -77,15 +110,21 @@ x_{\text{new}} = x + \eta \cdot f'(x) \quad\text{increases } f,
 x_{\text{new}} = x - \eta \cdot f'(x) \quad\text{decreases } f.
 ```
 
-The reason is the approximation above: with $h = \eta \cdot f'(x)$ the change
-is about $\eta \cdot (f'(x))^2$, which is positive whatever the sign of the
-slope. (Where the slope is exactly 0, here at the bottom of the parabola at
-$x = 2$, the rule gives a step of zero and $x$ stays put.) With $\eta = 0.1$:
+(Where the slope is exactly 0, here at the bottom of the parabola at $x = 2$,
+the step is zero and $x$ stays put.)
 
-| Start | $f'(x)$ | Step $x + 0.1 f'(x)$ | New $f$ | Step $x - 0.1 f'(x)$ | New $f$ |
-| --- | --- | --- | --- | --- | --- |
-| $x = 1$, $f = 2$ | −2 | 0.8 | 2.44 ↑ | 1.2 | 1.64 ↓ |
-| $x = 3.5$, $f = 3.25$ | +3 | 3.8 | 4.24 ↑ | 3.2 | 2.44 ↓ |
+Check with $\eta = 0.1$, predicted change against the real one:
+
+| Start | Slope | Step $h$ | Predicted change, slope × $h$ | New $x$ | New $f$ | Actual change |
+| --- | --- | --- | --- | --- | --- | --- |
+| $x = 1$, $f = 2$ | −2 | $+0.1 \cdot (-2) = -0.2$ | +0.4 | 0.8 | 2.44 | +0.44 ↑ |
+| $x = 1$, $f = 2$ | −2 | $-0.1 \cdot (-2) = +0.2$ | −0.4 | 1.2 | 1.64 | −0.36 ↓ |
+| $x = 3.5$, $f = 3.25$ | +3 | $+0.1 \cdot 3 = +0.3$ | +0.9 | 3.8 | 4.24 | +0.99 ↑ |
+| $x = 3.5$, $f = 3.25$ | +3 | $-0.1 \cdot 3 = -0.3$ | −0.9 | 3.2 | 2.44 | −0.81 ↓ |
+
+The prediction is not exact, because the tangent only approximates the
+curve; the smaller the step, the closer they agree. But the direction is
+right in every row, and that is what matters.
 
 Two things to keep:
 
