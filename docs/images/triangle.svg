@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="780" height="470" viewBox="0 0 780 470" font-family="-apple-system, Segoe UI, Helvetica, Arial, sans-serif" font-size="14" fill="#0f172a">
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="460" viewBox="0 0 800 460" font-family="-apple-system, Segoe UI, Helvetica, Arial, sans-serif" font-size="14" fill="#0f172a">
   <!-- f(x) = x² − 4x + 5 near x = 3: the tangent triangle for a step h = 0.4. Both axes use the same scale. -->
-  <rect width="780" height="470" rx="12" fill="#ffffff"/>
+  <rect width="800" height="460" rx="12" fill="#ffffff"/>
   <!-- Guides from the points to the value labels on the left and the x labels below. -->
   <g stroke="#64748b" stroke-dasharray="4 4" stroke-width="1">
     <line x1="140" y1="277.0" x2="265.5" y2="277.0"/>
@@ -11,7 +11,7 @@
   </g>
   <g text-anchor="end">
     <text x="132" y="282.0">f(x) = 2</text>
-    <text x="132" y="135.0" fill="#2563eb">f(x) + f′(x)·h = 2.8</text>
+    <text x="132" y="135.0" fill="#2563eb">f(x) + rise = 2.8</text>
     <text x="132" y="92.6" fill="#c2410c">f(x + h) = 2.96</text>
   </g>
   <g text-anchor="middle" fill="#64748b">
@@ -28,27 +28,30 @@
   <path d="M301.5,277.0 A36,36 0 0 0 281.6,244.8" fill="none" stroke="#7c3aed" stroke-width="1.5"/>
   <text x="305.5" y="267.0" fill="#7c3aed" font-style="italic">α</text>
   <g fill="#7c3aed">
-    <text x="303.5" y="297.0" text-anchor="middle">run h = 0.4</text>
-    <text x="351.5" y="195.0">rise</text>
-    <text x="351.5" y="213.0">f′(x)·h = 2 · 0.4 = 0.8</text>
+    <text x="315.5" y="297.0" text-anchor="middle" stroke="#ffffff" stroke-width="5" paint-order="stroke">run = h = 0.4</text>
+    <text x="351.5" y="206.0">rise = 0.8</text>
   </g>
-  <text x="365.5" y="121.8" fill="#c2410c">error 0.16</text>
+  <text x="365.5" y="121.8" fill="#c2410c">error = 0.16</text>
   <circle cx="265.5" cy="277.0" r="5" fill="#0f172a"/>
   <circle cx="341.5" cy="125.0" r="4.5" fill="#ffffff" stroke="#2563eb" stroke-width="2"/>
   <circle cx="341.5" cy="94.6" r="5" fill="#c2410c"/>
   <text x="356.5" y="31.5" text-anchor="end" font-style="italic">f(x) = x² − 4x + 5</text>
   <text x="366.5" y="91.0" fill="#2563eb">tangent</text>
-  <!-- Explanation panel. -->
+  <!-- Explanation panel: one step per line, nothing skipped. -->
   <g font-size="15">
-    <text x="490" y="70" font-weight="600">tan α = rise / run = f′(x)</text>
-    <text x="490" y="96" fill="#64748b">the slope of the tangent</text>
-    <text x="490" y="140" font-weight="600">rise = f′(x) · h</text>
-    <text x="490" y="166" fill="#64748b">multiply both sides by the run h</text>
-    <text x="490" y="210" font-weight="600">f(x + h) ≈ f(x) + f′(x) · h</text>
-    <text x="490" y="236" fill="#64748b">start height + rise along the tangent</text>
-    <text x="490" y="290" fill="#c2410c">The curve bends away from the</text>
-    <text x="490" y="310" fill="#c2410c">tangent, so there is an error.</text>
-    <text x="490" y="330" fill="#c2410c">Halve h and it shrinks four times:</text>
-    <text x="490" y="350" fill="#c2410c">here it is exactly h² = 0.16.</text>
+    <text x="490" y="44" font-weight="600">tan α = rise / run = f′(x)</text>
+    <text x="490" y="64" fill="#64748b" font-size="13">the slope of the tangent</text>
+    <text x="490" y="98" font-weight="600">run = h</text>
+    <text x="490" y="118" fill="#64748b" font-size="13">we call the step to the right h</text>
+    <text x="490" y="152" font-weight="600">rise = f′(x) · run = f′(x) · h</text>
+    <text x="490" y="172" fill="#64748b" font-size="13">multiply both sides by the run</text>
+    <text x="490" y="206" font-weight="600">rise = 2 · 0.4 = 0.8</text>
+    <text x="490" y="226" fill="#64748b" font-size="13">here f′(3) = 2 and h = 0.4</text>
+    <text x="490" y="260" fill="#2563eb" font-weight="600">tangent: f(x) + rise = 2 + 0.8 = 2.8</text>
+    <text x="490" y="294" fill="#c2410c" font-weight="600">curve: f(x + h) = 2.8 + error = 2.96</text>
+    <text x="490" y="328" fill="#c2410c" font-weight="600">error = h² = 0.16</text>
+    <text x="490" y="348" fill="#64748b" font-size="13">10 times smaller h: 100 times smaller error</text>
+    <text x="490" y="392" font-weight="600">f(x + h) ≈ f(x) + f′(x) · h</text>
+    <text x="490" y="412" fill="#64748b" font-size="13">for a small h, drop the error</text>
   </g>
 </svg>

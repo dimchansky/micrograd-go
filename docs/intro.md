@@ -63,36 +63,42 @@ $\tan \alpha = f'(x)$. The picture zooms in on the same function at $x = 3$,
 where $f(3) = 2$ and $f'(3) = 2 \cdot 3 - 4 = 2$. Both axes use the same
 scale, so the drawn angle really has $\tan \alpha = 2$.
 
-![Tangent triangle at x = 3: run h = 0.4, rise f′(x)·h = 0.8 up to 2.8 on the tangent, while the curve reaches 2.96](images/triangle.svg)
+![Tangent triangle at x = 3: run = h = 0.4, rise = f′(x)·h = 0.8 up to 2.8 on the tangent; the curve reaches 2.96, error 0.16](images/triangle.svg)
 
-Step to the right by a run of $h = 0.4$ and read everything off the triangle:
+Step to the right by $h = 0.4$. This step is the run of the triangle, so
+from now on we write $h$ for the run.
 
-1. The rise divided by the run is the slope: $\dfrac{\text{rise}}{h} = f'(x)$.
-2. Multiply both sides by $h$: the rise is $f'(x) \cdot h = 2 \cdot 0.4 = 0.8$.
+1. The rise divided by the run is the slope: $\text{rise} / \text{run} = f'(x)$.
+2. Multiply both sides by the run:
+   $\text{rise} = f'(x) \cdot \text{run} = f'(x) \cdot h = 2 \cdot 0.4 = 0.8$.
 3. The tangent starts at height $f(x) = 2$ and climbs by the rise, so at
-   $x + h$ it reaches $f(x) + f'(x) \cdot h = 2.8$.
-4. The curve itself reaches $f(3.4) = 2.96$. The tangent misses it by $0.16$.
+   $x + h$ it is at $f(x) + \text{rise} = f(x) + f'(x) \cdot h = 2.8$.
+4. The curve itself is at $f(3.4) = 2.96$. The gap between the curve and the
+   tangent is the **error**: $2.96 - 2.8 = 0.16$.
 
-That miss is the price of following the straight tangent instead of the
-curve. It shrinks much faster than the step: here it is exactly $h^2$, so a
-ten times smaller step $h = 0.04$ gives a rise of $0.08$ but a miss of only
-$0.0016$. For small steps the tangent is an excellent stand-in for the curve:
-
-```math
-f(x+h) \approx f(x) + f'(x) \cdot h.
-```
-
-Moving $f(x)$ to the left side gives the form used everywhere below: the
-**change** of the output is about the slope times the step,
+So the **change** of the curve, $f(x+h) - f(x) = 2.96 - 2 = 0.96$, splits into
+the rise along the tangent and the error:
 
 ```math
-f(x+h) - f(x) \approx f'(x) \cdot h.
+\underbrace{f(x+h) - f(x)}_{\text{change}\ =\ 0.96} = \underbrace{f'(x) \cdot h}_{\text{rise}\ =\ 0.8} + \underbrace{\text{error}}_{0.16}.
 ```
+
+The error shrinks much faster than the step: here it is exactly $h^2$. With
+a ten times smaller step, $h = 0.04$, the rise is $0.08$ but the error only
+$0.0016$, a hundred times smaller. So for a small step we can drop the error,
+and the change is about the rise:
+
+```math
+f(x+h) - f(x) \approx f'(x) \cdot h, \qquad\text{or equivalently}\qquad f(x+h) \approx f(x) + f'(x) \cdot h.
+```
+
+In words: the output changes by about **the slope times the step**.
 
 ## 2. The slope tells you which way to move
 
-The formula above holds at every point, whatever the sign of the slope.
-Read it in the two cases of the next picture. It shows two
+The rule *change ≈ slope × step*, $f(x+h) - f(x) \approx f'(x) \cdot h$, holds
+at every point and for a step in either direction: $h$ may be negative, a
+step to the left. Read it in the two cases of the next picture. It shows two
 points of the same function: $x = 1$ from the table in section 1, and $x = 3.5$, where
 $f(3.5) = 3.25$ and $f'(3.5) = 2 \cdot 3.5 - 4 = 3$.
 
