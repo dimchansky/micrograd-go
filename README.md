@@ -15,6 +15,11 @@ to explain **derivatives**, the **computation graph**, or a **training step**.
 There are no tensors, no optimizers, no layers beyond the perceptron, and no
 dependencies in the library itself.
 
+**New to backpropagation?** Start with
+[From a derivative to backpropagation](docs/intro.md): a step-by-step
+introduction, with pictures, from the school definition of a derivative to
+the backward pass that this code implements.
+
 - [Quick start](#quick-start)
 - [What to read, in which order](#what-to-read-in-which-order)
 - [1. A value that remembers where it came from](#1-a-value-that-remembers-where-it-came-from)
@@ -61,6 +66,7 @@ fmt.Println(y.Data, x.Grad) // 12 7: the value of y, and dy/dx = 2x + 1 = 7 at x
 
 | File | What it teaches |
 | --- | --- |
+| [docs/intro.md](docs/intro.md) | The ideas first: derivative, computation graph, chain rule, backward pass |
 | [engine.go](engine.go) | `Value`, the four primitive operations and `Backward` |
 | [cmd/demo/main.go](cmd/demo/main.go) | A single derivative, then a full training loop for `y = w·x + b` |
 | [nn.go](nn.go) | `Neuron`, `Layer`, `MLP` built only from `Value` operations |
