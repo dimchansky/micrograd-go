@@ -80,7 +80,11 @@ So the **change** of the curve, $f(x+h) - f(x) = 2.96 - 2 = 0.96$, splits into
 the rise along the tangent and the error:
 
 ```math
-\underbrace{f(x+h) - f(x)}_{\text{change}\ =\ 0.96} = \underbrace{f'(x) \cdot h}_{\text{rise}\ =\ 0.8} + \underbrace{\text{error}}_{0.16}.
+\begin{aligned}
+\text{change} &= \text{rise} + \text{error} \\
+f(x+h) - f(x) &= f'(x) \cdot h + \text{error} \\
+0.96 &= 0.8 + 0.16
+\end{aligned}
 ```
 
 The error shrinks much faster than the step: here it is exactly $h^2$. With
