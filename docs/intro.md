@@ -46,17 +46,54 @@ appears if you simply compute the ratio for smaller and smaller $h$:
 Nudging the input, measuring the output and dividing gets as close to the
 derivative as you like; the rule $f'(x) = 2x - 4$ gives the exact value.
 
-## 2. The slope tells you which way to move
+### The derivative as a triangle
 
-Near the point $x$, the curve and its tangent are almost the same thing. So
-for a small step $h$:
+The slope of a straight line is *rise over run*: how far the line goes up
+for a given distance to the right. Draw a right triangle under the line,
+with a horizontal side (the run) and a vertical side (the rise). The ratio
+of the two is the tangent of the angle $\alpha$ between the line and the
+horizontal:
+
+```math
+\tan \alpha = \dfrac{\text{rise}}{\text{run}}.
+```
+
+For the tangent line at $x$, this ratio is the derivative:
+$\tan \alpha = f'(x)$. The picture zooms in on the same function at $x = 3$,
+where $f(3) = 2$ and $f'(3) = 2 \cdot 3 - 4 = 2$. Both axes use the same
+scale, so the drawn angle really has $\tan \alpha = 2$.
+
+![Tangent triangle at x = 3: run h = 0.4, rise f′(x)·h = 0.8 up to 2.8 on the tangent, while the curve reaches 2.96](images/triangle.svg)
+
+Step to the right by a run of $h = 0.4$ and read everything off the triangle:
+
+1. The rise divided by the run is the slope: $\dfrac{\text{rise}}{h} = f'(x)$.
+2. Multiply both sides by $h$: the rise is $f'(x) \cdot h = 2 \cdot 0.4 = 0.8$.
+3. The tangent starts at height $f(x) = 2$ and climbs by the rise, so at
+   $x + h$ it reaches $f(x) + f'(x) \cdot h = 2.8$.
+4. The curve itself reaches $f(3.4) = 2.96$. The tangent misses it by $0.16$.
+
+That miss is the price of following the straight tangent instead of the
+curve. It shrinks much faster than the step: here it is exactly $h^2$, so a
+ten times smaller step $h = 0.04$ gives a rise of $0.08$ but a miss of only
+$0.0016$. For small steps the tangent is an excellent stand-in for the curve:
 
 ```math
 f(x+h) \approx f(x) + f'(x) \cdot h.
 ```
 
-The change of the output is roughly *slope × step*. The picture shows two
-points of the same function: $x = 1$ from above, and $x = 3.5$, where
+Moving $f(x)$ to the left side gives the form used everywhere below: the
+**change** of the output is about the slope times the step,
+
+```math
+f(x+h) - f(x) \approx f'(x) \cdot h.
+```
+
+## 2. The slope tells you which way to move
+
+The formula above holds at every point, whatever the sign of the slope.
+Read it in the two cases of the next picture. It shows two
+points of the same function: $x = 1$ from the table in section 1, and $x = 3.5$, where
 $f(3.5) = 3.25$ and $f'(3.5) = 2 \cdot 3.5 - 4 = 3$.
 
 ![The parabola f(x) = x² − 4x + 5 with its tangent at x = 1 (slope −2) and at x = 3.5 (slope +3)](images/tangent.svg)
@@ -84,7 +121,7 @@ a step to the left; at $x = 3.5$ the slope $+3$ gives $h = +0.3$, a step to
 the right. These are exactly the directions in which $f$ grows.
 
 How much does $f$ change after such a step? Take the approximation from the
-start of this section, *change ≈ slope × step*, and put our step in place
+end of section 1, *change ≈ slope × step*, and put our step in place
 of $h$:
 
 ```math
