@@ -338,13 +338,13 @@ and the number $\dfrac{\partial L}{\partial d}$ that was already computed one
 step earlier. Nothing about the rest of the graph.
 
 In the picture, each node now shows its $\dfrac{\partial L}{\partial \text{node}}$
-in orange. Each edge going into an operation shows, in purple, that
+in red. Each edge going into an operation shows, in purple, that
 operation's local derivative: how its result reacts to this one input. The
 edge from $a$ into $+$ carries $\dfrac{\partial d}{\partial a} = 1$, and the
 edge from $d$ into $\times$ carries $\dfrac{\partial L}{\partial d} = c = -2$,
 the *other* factor, as found in section 6.
 
-A node's gradient is always two numbers multiplied: the orange gradient of
+A node's gradient is always two numbers multiplied: the red gradient of
 the node its edge leads to, times the purple number on that edge. For $a$,
 the edge leads through $+$ to $d$. The gradient of $d$ is $-2$, and the edge
 carries $1$:
