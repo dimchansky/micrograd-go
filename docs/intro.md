@@ -22,7 +22,7 @@ Take a function $f(x)$ and a point $x$. Move the input a little, by $h$, and
 see how much the output changed per unit of input change:
 
 ```math
-\frac{f(x+h) - f(x)}{h}
+\dfrac{f(x+h) - f(x)}{h}
 ```
 
 This is the slope of the straight line through the points $(x, f(x))$ and
@@ -30,7 +30,7 @@ $(x+h, f(x+h))$. As $h$ shrinks towards zero, this line turns into the
 **tangent** at $x$, and its slope becomes the **derivative**:
 
 ```math
-f'(x) = \frac{df}{dx} = \lim_{h \to 0} \frac{f(x+h) - f(x)}{h}.
+f'(x) = \dfrac{df}{dx} = \lim_{h \to 0} \dfrac{f(x+h) - f(x)}{h}.
 ```
 
 Example: $f(x) = x^2 - 4x + 5$, whose derivative is $f'(x) = 2x - 4$. At
@@ -108,13 +108,13 @@ L = d \cdot c.
 
 We can still ask how $L$ reacts to a small change of **one** input while the
 others are held fixed. That is a **partial derivative**, written with a
-curly $\partial$ instead of the straight $d$ in $\frac{df}{dx}$. It is computed exactly as before, by nudging
+curly $\partial$ instead of the straight $d$ in $\dfrac{df}{dx}$. It is computed exactly as before, by nudging
 only that one input:
 
 ```math
-\frac{\partial L}{\partial d} = \lim_{h \to 0} \frac{(d+h) \cdot c - d \cdot c}{h} = \lim_{h \to 0} \frac{h \cdot c}{h} = c,
+\dfrac{\partial L}{\partial d} = \lim_{h \to 0} \dfrac{(d+h) \cdot c - d \cdot c}{h} = \lim_{h \to 0} \dfrac{h \cdot c}{h} = c,
 \qquad
-\frac{\partial L}{\partial c} = d.
+\dfrac{\partial L}{\partial c} = d.
 ```
 
 Each partial derivative is the slope of $L$ along one input's direction. The
@@ -146,14 +146,14 @@ Now the goal. For **every** node in the graph we want to know: if this
 number changed a little, how much would $L$ change? That is, we want
 
 ```math
-\frac{\partial L}{\partial a},\quad \frac{\partial L}{\partial b},\quad \frac{\partial L}{\partial c},\quad \frac{\partial L}{\partial d}.
+\dfrac{\partial L}{\partial a},\quad \dfrac{\partial L}{\partial b},\quad \dfrac{\partial L}{\partial c},\quad \dfrac{\partial L}{\partial d}.
 ```
 
 For an intermediate node such as $d$, imagine replacing its value directly by
 a slightly different number, with everything before it unchanged, and
 watching $L$. We will call this number the node's **gradient**, as the code
 does: every node keeps it in its `Grad` field, and after the backward pass
-`d.Grad` is $\frac{\partial L}{\partial d}$.
+`d.Grad` is $\dfrac{\partial L}{\partial d}$.
 
 For a neural network, $L$ is the loss (how wrong the network is) and the
 inputs include the network's weights. These derivatives then say which
@@ -173,14 +173,14 @@ amount changes $L$ by exactly that amount (the slope of the line $y = x$ is
 1), so
 
 ```math
-\frac{\partial L}{\partial L} = 1.
+\dfrac{\partial L}{\partial L} = 1.
 ```
 
 Step back one operation, to $L = d \cdot c$. Its inputs $d$ and $c$ feed $L$
 directly, and section 3 already worked out how $L$ reacts to each of them:
 
 ```math
-\frac{\partial L}{\partial d} = c = -2, \qquad \frac{\partial L}{\partial c} = d = 3.
+\dfrac{\partial L}{\partial d} = c = -2, \qquad \dfrac{\partial L}{\partial c} = d = 3.
 ```
 
 Check by nudging: $d = 3.001$ gives $L = 3.001 \cdot (-2) = -6.002$, a change
@@ -199,34 +199,34 @@ Next comes $d = a + b$. On its own, this operation is just as easy. Its
 local derivatives come from the same limit:
 
 ```math
-\frac{\partial d}{\partial a} = \lim_{h \to 0} \frac{(a+h) + b - (a + b)}{h} = \lim_{h \to 0} \frac{h}{h} = 1,
+\dfrac{\partial d}{\partial a} = \lim_{h \to 0} \dfrac{(a+h) + b - (a + b)}{h} = \lim_{h \to 0} \dfrac{h}{h} = 1,
 \qquad
-\frac{\partial d}{\partial b} = 1.
+\dfrac{\partial d}{\partial b} = 1.
 ```
 
 But this tells us how $d$ reacts to $a$, and the question is how **$L$**
 reacts to $a$. The two pieces we have fit together like this:
 
-- nudge $a$ by a small $h$, and $d$ moves by $\frac{\partial d}{\partial a} \cdot h = 1 \cdot h$;
-- $d$ moving by any small amount $k$ makes $L$ move by $\frac{\partial L}{\partial d} \cdot k = -2 \cdot k$;
+- nudge $a$ by a small $h$, and $d$ moves by $\dfrac{\partial d}{\partial a} \cdot h = 1 \cdot h$;
+- $d$ moving by any small amount $k$ makes $L$ move by $\dfrac{\partial L}{\partial d} \cdot k = -2 \cdot k$;
 - so $L$ moves by $-2 \cdot (1 \cdot h)$.
 
 The rates multiply. This is the **chain rule**:
 
 ```math
-\frac{\partial L}{\partial a} = \frac{\partial L}{\partial d} \cdot \frac{\partial d}{\partial a} = -2 \cdot 1 = -2,
+\dfrac{\partial L}{\partial a} = \dfrac{\partial L}{\partial d} \cdot \dfrac{\partial d}{\partial a} = -2 \cdot 1 = -2,
 \qquad
-\frac{\partial L}{\partial b} = \frac{\partial L}{\partial d} \cdot \frac{\partial d}{\partial b} = -2 \cdot 1 = -2.
+\dfrac{\partial L}{\partial b} = \dfrac{\partial L}{\partial d} \cdot \dfrac{\partial d}{\partial b} = -2 \cdot 1 = -2.
 ```
 
 Check by nudging: $a = 2.001$ gives $d = 3.001$ and $L = -6.002$; the slope
 is $-2$, as predicted, and likewise for $b$.
 
 Notice what this step needed: only the local derivative of $+$, which is 1,
-and the number $\frac{\partial L}{\partial d}$ that was already computed one
+and the number $\dfrac{\partial L}{\partial d}$ that was already computed one
 step earlier. Nothing about the rest of the graph.
 
-In the picture, each node now shows its $\frac{\partial L}{\partial \text{node}}$,
+In the picture, each node now shows its $\dfrac{\partial L}{\partial \text{node}}$,
 and each edge the local derivative of the operation it feeds:
 
 ![The same graph after the backward pass: every node shows ∂L/∂node, every edge the local derivative](images/graph-backward.svg)
@@ -237,19 +237,19 @@ Put together, the steps above form a procedure for any graph built from
 operations whose local derivatives we know:
 
 1. **Forward pass:** compute every node's value, from the inputs to $L$.
-2. Set $\frac{\partial L}{\partial L} = 1$.
+2. Set $\dfrac{\partial L}{\partial L} = 1$.
 3. **Backward pass:** go through the operations from $L$ back towards the
    inputs, in an order where an operation's result already has its complete
    gradient before its inputs are handled. At each operation, multiply the
    gradient of its result by the operation's local derivative for each
    input (the formula below).
 4. When the pass reaches the inputs, every node holds its gradient
-   $\frac{\partial L}{\partial \text{node}}$.
+   $\dfrac{\partial L}{\partial \text{node}}$.
 
 The rule applied in step 3 is the chain rule from section 7:
 
 ```math
-\frac{\partial L}{\partial \,\text{input}} = \frac{\partial L}{\partial \,\text{result}} \cdot \frac{\partial \,\text{result}}{\partial \,\text{input}}.
+\dfrac{\partial L}{\partial \,\text{input}} = \dfrac{\partial L}{\partial \,\text{result}} \cdot \dfrac{\partial \,\text{result}}{\partial \,\text{input}}.
 ```
 
 This is **backpropagation**. Each operation is handled once, so the backward
@@ -263,14 +263,14 @@ inputs $p$ and $q$ and result $o$:
 
 | Operation | Local derivatives | What happens to the incoming gradient |
 | --- | --- | --- |
-| $o = p + q$ | $\frac{\partial o}{\partial p} = 1$, $\frac{\partial o}{\partial q} = 1$ | passed to both inputs unchanged |
-| $o = p \cdot q$ | $\frac{\partial o}{\partial p} = q$, $\frac{\partial o}{\partial q} = p$ | multiplied by the *other* input's value |
+| $o = p + q$ | $\dfrac{\partial o}{\partial p} = 1$, $\dfrac{\partial o}{\partial q} = 1$ | passed to both inputs unchanged |
+| $o = p \cdot q$ | $\dfrac{\partial o}{\partial p} = q$, $\dfrac{\partial o}{\partial q} = p$ | multiplied by the *other* input's value |
 
 And this is exactly what the library's code says. In
 [engine.go](../engine.go) every operation stores a small function that
 applies its row of this table. There `v` and `other` are the inputs $p$ and
 $q$, `out` is the result $o$, `Data` is a node's value, and `Grad` is its
-$\frac{\partial L}{\partial \text{node}}$:
+$\dfrac{\partial L}{\partial \text{node}}$:
 
 ```go
 // o = p + q
@@ -292,9 +292,9 @@ Section 2 showed how to use a derivative with one input. With several
 inputs, do the same for each of them, each with its own derivative:
 
 ```math
-a \leftarrow a + \eta \cdot \frac{\partial L}{\partial a},\qquad
-b \leftarrow b + \eta \cdot \frac{\partial L}{\partial b},\qquad
-c \leftarrow c + \eta \cdot \frac{\partial L}{\partial c}.
+a \leftarrow a + \eta \cdot \dfrac{\partial L}{\partial a},\qquad
+b \leftarrow b + \eta \cdot \dfrac{\partial L}{\partial b},\qquad
+c \leftarrow c + \eta \cdot \dfrac{\partial L}{\partial c}.
 ```
 
 There is no update for $d$: it is not something we set, it is recomputed
@@ -310,7 +310,7 @@ For small steps, the changes caused by each input add up, and each one is
 derivative × step, as in section 2:
 
 ```math
-\Delta L \approx \frac{\partial L}{\partial a} \Delta a + \frac{\partial L}{\partial b} \Delta b + \frac{\partial L}{\partial c} \Delta c
+\Delta L \approx \dfrac{\partial L}{\partial a} \Delta a + \dfrac{\partial L}{\partial b} \Delta b + \dfrac{\partial L}{\partial c} \Delta c
 = 0.01 \cdot \left( (-2)^2 + (-2)^2 + 3^2 \right) = 0.17.
 ```
 
@@ -323,7 +323,7 @@ the loss, the inputs we change are the weights, and each training step moves
 every weight a little against its gradient:
 
 ```math
-w \leftarrow w - \eta \cdot \frac{\partial L}{\partial w}.
+w \leftarrow w - \eta \cdot \dfrac{\partial L}{\partial w}.
 ```
 
 This is **gradient descent**. The README's
