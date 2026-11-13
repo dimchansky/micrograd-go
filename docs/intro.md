@@ -180,8 +180,8 @@ change is $2.44 - 2 = 0.44$.
 | $x = 3.5$, $f(3.5) = 3.25$ | +3 | $+0.1 \cdot 3 = +0.3$ | +0.9 | 3.8 | 4.24 | +0.99 ↑ |
 | $x = 3.5$, $f(3.5) = 3.25$ | +3 | $-0.1 \cdot 3 = -0.3$ | −0.9 | 3.2 | 2.44 | −0.81 ↓ |
 
-The first and third rows step *with* the slope ($h = +\eta \cdot f'(x)$),
-the second and fourth *against* it ($h = -\eta \cdot f'(x)$).
+Rows 1 and 3 step with the slope, $h = \eta \cdot f'(x)$. Rows 2 and 4 step
+against it, $h = -\eta \cdot f'(x)$.
 
 The prediction is not exact, because the tangent only approximates the
 curve; the smaller the step, the closer they agree. But the direction is
