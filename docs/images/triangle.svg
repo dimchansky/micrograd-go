@@ -1,54 +1,54 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="900" height="470" viewBox="0 0 900 470" font-family="-apple-system, Segoe UI, Helvetica, Arial, sans-serif" font-size="14" fill="#0f172a">
+<svg xmlns="http://www.w3.org/2000/svg" width="780" height="470" viewBox="0 0 780 470" font-family="-apple-system, Segoe UI, Helvetica, Arial, sans-serif" font-size="14" fill="#0f172a">
   <!-- f(x) = x² − 4x + 5 near x = 3: the tangent triangle for a step h = 0.4. Both axes use the same scale. -->
-  <rect width="900" height="470" rx="12" fill="#ffffff"/>
+  <rect width="780" height="470" rx="12" fill="#ffffff"/>
   <!-- Guides from the points to the value labels on the left and the x labels below. -->
   <g stroke="#64748b" stroke-dasharray="4 4" stroke-width="1">
-    <line x1="260" y1="277.0" x2="385.5" y2="277.0"/>
-    <line x1="260" y1="125.0" x2="461.5" y2="125.0"/>
-    <line x1="260" y1="94.6" x2="461.5" y2="94.6"/>
-    <line x1="385.5" y1="277.0" x2="385.5" y2="425"/>
-    <line x1="461.5" y1="277.0" x2="461.5" y2="425"/>
+    <line x1="140" y1="277.0" x2="265.5" y2="277.0"/>
+    <line x1="140" y1="125.0" x2="341.5" y2="125.0"/>
+    <line x1="140" y1="94.6" x2="341.5" y2="94.6"/>
+    <line x1="265.5" y1="277.0" x2="265.5" y2="425"/>
+    <line x1="341.5" y1="277.0" x2="341.5" y2="425"/>
   </g>
   <g text-anchor="end">
-    <text x="252" y="282.0">f(x) = 2</text>
-    <text x="252" y="135.0" fill="#2563eb">f(x) + f′(x)·h = 2.8</text>
-    <text x="252" y="92.6" fill="#c2410c">f(x + h) = 2.96</text>
+    <text x="132" y="282.0">f(x) = 2</text>
+    <text x="132" y="135.0" fill="#2563eb">f(x) + f′(x)·h = 2.8</text>
+    <text x="132" y="92.6" fill="#c2410c">f(x + h) = 2.96</text>
   </g>
   <g text-anchor="middle" fill="#64748b">
-    <text x="385.5" y="443">x = 3</text>
-    <text x="461.5" y="443">x + h = 3.4</text>
+    <text x="265.5" y="443">x = 3</text>
+    <text x="341.5" y="443">x + h = 3.4</text>
   </g>
   <!-- The triangle: run h, rise f′(x)·h along the tangent. -->
-  <polygon points="385.5,277.0 461.5,277.0 461.5,125.0" fill="#7c3aed" fill-opacity="0.10"/>
-  <polyline points="300.0,409.5 301.9,407.4 303.8,405.3 305.7,403.1 307.6,400.9 309.5,398.6 311.4,396.3 313.3,394.0 315.2,391.6 317.1,389.2 319.0,386.7 320.9,384.2 322.8,381.7 324.7,379.1 326.6,376.5 328.5,373.9 330.4,371.2 332.3,368.5 334.2,365.7 336.1,363.0 338.0,360.1 339.9,357.3 341.8,354.3 343.7,351.4 345.6,348.4 347.5,345.4 349.4,342.3 351.3,339.2 353.2,336.1 355.1,332.9 357.0,329.7 358.9,326.5 360.8,323.2 362.7,319.9 364.6,316.5 366.5,313.1 368.4,309.7 370.3,306.2 372.2,302.7 374.1,299.1 376.0,295.5 377.9,291.9 379.8,288.2 381.7,284.5 383.6,280.8 385.5,277.0 387.4,273.2 389.3,269.3 391.2,265.4 393.1,261.5 395.0,257.5 396.9,253.5 398.8,249.5 400.7,245.4 402.6,241.3 404.5,237.1 406.4,232.9 408.3,228.7 410.2,224.4 412.1,220.1 414.0,215.7 415.9,211.3 417.8,206.9 419.7,202.4 421.6,197.9 423.5,193.4 425.4,188.8 427.3,184.2 429.2,179.5 431.1,174.9 433.0,170.1 434.9,165.4 436.8,160.5 438.7,155.7 440.6,150.8 442.5,145.9 444.4,140.9 446.3,135.9 448.2,130.9 450.1,125.8 452.0,120.7 453.9,115.6 455.8,110.4 457.7,105.2 459.6,99.9 461.5,94.6 463.4,89.3 465.3,83.9 467.2,78.5 469.1,73.0 471.0,67.5 472.9,62.0 474.8,56.4 476.7,50.8 478.6,45.2 480.5,39.5" fill="none" stroke="#0f172a" stroke-width="2.5"/>
-  <line x1="319.0" y1="410.0" x2="480.5" y2="87.0" stroke="#2563eb" stroke-width="2"/>
-  <line x1="385.5" y1="277.0" x2="461.5" y2="277.0" stroke="#7c3aed" stroke-width="2.5"/>
-  <line x1="461.5" y1="277.0" x2="461.5" y2="125.0" stroke="#7c3aed" stroke-width="2.5"/>
-  <line x1="461.5" y1="125.0" x2="461.5" y2="94.6" stroke="#c2410c" stroke-width="3"/>
-  <path d="M421.5,277.0 A36,36 0 0 0 401.6,244.8" fill="none" stroke="#7c3aed" stroke-width="1.5"/>
-  <text x="425.5" y="267.0" fill="#7c3aed" font-style="italic">α</text>
+  <polygon points="265.5,277.0 341.5,277.0 341.5,125.0" fill="#7c3aed" fill-opacity="0.10"/>
+  <polyline points="180.0,409.5 181.9,407.4 183.8,405.3 185.7,403.1 187.6,400.9 189.5,398.6 191.4,396.3 193.3,394.0 195.2,391.6 197.1,389.2 199.0,386.7 200.9,384.2 202.8,381.7 204.7,379.1 206.6,376.5 208.5,373.9 210.4,371.2 212.3,368.5 214.2,365.7 216.1,363.0 218.0,360.1 219.9,357.3 221.8,354.3 223.7,351.4 225.6,348.4 227.5,345.4 229.4,342.3 231.3,339.2 233.2,336.1 235.1,332.9 237.0,329.7 238.9,326.5 240.8,323.2 242.7,319.9 244.6,316.5 246.5,313.1 248.4,309.7 250.3,306.2 252.2,302.7 254.1,299.1 256.0,295.5 257.9,291.9 259.8,288.2 261.7,284.5 263.6,280.8 265.5,277.0 267.4,273.2 269.3,269.3 271.2,265.4 273.1,261.5 275.0,257.5 276.9,253.5 278.8,249.5 280.7,245.4 282.6,241.3 284.5,237.1 286.4,232.9 288.3,228.7 290.2,224.4 292.1,220.1 294.0,215.7 295.9,211.3 297.8,206.9 299.7,202.4 301.6,197.9 303.5,193.4 305.4,188.8 307.3,184.2 309.2,179.5 311.1,174.9 313.0,170.1 314.9,165.4 316.8,160.5 318.7,155.7 320.6,150.8 322.5,145.9 324.4,140.9 326.3,135.9 328.2,130.9 330.1,125.8 332.0,120.7 333.9,115.6 335.8,110.4 337.7,105.2 339.6,99.9 341.5,94.6 343.4,89.3 345.3,83.9 347.2,78.5 349.1,73.0 351.0,67.5 352.9,62.0 354.8,56.4 356.7,50.8 358.6,45.2 360.5,39.5" fill="none" stroke="#0f172a" stroke-width="2.5"/>
+  <line x1="199.0" y1="410.0" x2="360.5" y2="87.0" stroke="#2563eb" stroke-width="2"/>
+  <line x1="265.5" y1="277.0" x2="341.5" y2="277.0" stroke="#7c3aed" stroke-width="2.5"/>
+  <line x1="341.5" y1="277.0" x2="341.5" y2="125.0" stroke="#7c3aed" stroke-width="2.5"/>
+  <line x1="341.5" y1="125.0" x2="341.5" y2="94.6" stroke="#c2410c" stroke-width="3"/>
+  <path d="M301.5,277.0 A36,36 0 0 0 281.6,244.8" fill="none" stroke="#7c3aed" stroke-width="1.5"/>
+  <text x="305.5" y="267.0" fill="#7c3aed" font-style="italic">α</text>
   <g fill="#7c3aed">
-    <text x="423.5" y="297.0" text-anchor="middle">run h = 0.4</text>
-    <text x="471.5" y="195.0">rise</text>
-    <text x="471.5" y="213.0">f′(x)·h = 2 · 0.4 = 0.8</text>
+    <text x="303.5" y="297.0" text-anchor="middle">run h = 0.4</text>
+    <text x="351.5" y="195.0">rise</text>
+    <text x="351.5" y="213.0">f′(x)·h = 2 · 0.4 = 0.8</text>
   </g>
-  <text x="485.5" y="121.8" fill="#c2410c">error 0.16</text>
-  <circle cx="385.5" cy="277.0" r="5" fill="#0f172a"/>
-  <circle cx="461.5" cy="125.0" r="4.5" fill="#ffffff" stroke="#2563eb" stroke-width="2"/>
-  <circle cx="461.5" cy="94.6" r="5" fill="#c2410c"/>
-  <text x="476.5" y="31.5" text-anchor="end" font-style="italic">f(x) = x² − 4x + 5</text>
-  <text x="486.5" y="91.0" fill="#2563eb">tangent</text>
+  <text x="365.5" y="121.8" fill="#c2410c">error 0.16</text>
+  <circle cx="265.5" cy="277.0" r="5" fill="#0f172a"/>
+  <circle cx="341.5" cy="125.0" r="4.5" fill="#ffffff" stroke="#2563eb" stroke-width="2"/>
+  <circle cx="341.5" cy="94.6" r="5" fill="#c2410c"/>
+  <text x="356.5" y="31.5" text-anchor="end" font-style="italic">f(x) = x² − 4x + 5</text>
+  <text x="366.5" y="91.0" fill="#2563eb">tangent</text>
   <!-- Explanation panel. -->
   <g font-size="15">
-    <text x="610" y="70" font-weight="600">tan α = rise / run = f′(x)</text>
-    <text x="610" y="96" fill="#64748b">the slope of the tangent</text>
-    <text x="610" y="140" font-weight="600">rise = f′(x) · h</text>
-    <text x="610" y="166" fill="#64748b">multiply both sides by the run h</text>
-    <text x="610" y="210" font-weight="600">f(x + h) ≈ f(x) + f′(x) · h</text>
-    <text x="610" y="236" fill="#64748b">start height + rise along the tangent</text>
-    <text x="610" y="290" fill="#c2410c">The curve bends away from the</text>
-    <text x="610" y="310" fill="#c2410c">tangent, so there is an error.</text>
-    <text x="610" y="330" fill="#c2410c">Halve h and it shrinks four times:</text>
-    <text x="610" y="350" fill="#c2410c">here it is exactly h² = 0.16.</text>
+    <text x="490" y="70" font-weight="600">tan α = rise / run = f′(x)</text>
+    <text x="490" y="96" fill="#64748b">the slope of the tangent</text>
+    <text x="490" y="140" font-weight="600">rise = f′(x) · h</text>
+    <text x="490" y="166" fill="#64748b">multiply both sides by the run h</text>
+    <text x="490" y="210" font-weight="600">f(x + h) ≈ f(x) + f′(x) · h</text>
+    <text x="490" y="236" fill="#64748b">start height + rise along the tangent</text>
+    <text x="490" y="290" fill="#c2410c">The curve bends away from the</text>
+    <text x="490" y="310" fill="#c2410c">tangent, so there is an error.</text>
+    <text x="490" y="330" fill="#c2410c">Halve h and it shrinks four times:</text>
+    <text x="490" y="350" fill="#c2410c">here it is exactly h² = 0.16.</text>
   </g>
 </svg>
